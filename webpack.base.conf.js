@@ -1,5 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, './src'),
@@ -7,14 +9,20 @@ const PATHS = {
     assets: 'assets/',
 };
 
+
 module.exports = {
+
+    externals: {
+        paths: PATHS,
+    },
+
     entry: {
-        app: './src/index.js'
+        app: PATHS.src
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist'
+        filename: `${PATHS.assets}js/[name].js`,
+        path: PATHS.dist,
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -57,6 +65,23 @@ module.exports = {
         overlay: true
     },
     plugins: [
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin({
+            filename: `${PATHS.assets}css/[name].css`
+        }),
+        new HtmlWebpackPlugin({
+            hash: false,
+            template: `${PATHS.src}/index.html`,
+            filename: './index.html',
+            inject: false
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: `${PATHS.src}/img`,
+                to: `${PATHS.assets}img`
+            },
+            {
+                from: `${PATHS.src}/static`,
+            }
+        ]),
     ],
 };

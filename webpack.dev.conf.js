@@ -6,11 +6,11 @@ const baseWebpackConfig = require('./webpack.base.conf');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
     mode: 'development',
-
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         port: 3333,
-        overlay: true
+        overlay: true,
+        contentBase: baseWebpackConfig.externals.paths.dist,
     },
     plugins: [
         new webpack.SourceMapDevToolPlugin({
