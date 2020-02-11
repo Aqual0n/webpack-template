@@ -77,7 +77,7 @@ module.exports = {
                         options: {
                             sourceMap: true,
                             config: {
-                                path: `${PATHS.src}/js/postcss.config.js`
+                                path: `./postcss.config.js`
                             }
                         }
                     }
@@ -92,8 +92,10 @@ module.exports = {
             },
         ]
     },
-    devServer: {
-        overlay: true
+    resolve: {
+        alias: {
+            '~': 'src',
+        }
     },
     plugins: [
         new VueLoaderPlugin(),
@@ -106,7 +108,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {
-                from: `${PATHS.src}/img`,
+                from: `${PATHS.src}/assets/img`,
                 to: `${PATHS.assets}img`
             },
             {
