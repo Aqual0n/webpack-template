@@ -1,12 +1,14 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
-Vue.use(VueRouter);
+Vue.use(Router);
 
 const routes = [];
 
-const router = new VueRouter({
-  routes
+const router = new Router({
+  routes: [
+
+  ]
 });
 
 export default router

@@ -3,19 +3,10 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
+import module from "./module";
+
 export default new Vuex.Store({
-  state: {
-    titleText: 'TEST TEXT'
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  getters: {
-    getTitleText(state) {
-      return state.titleText;
+    modules: {
+      module
     }
-  },
-  modules: {
-  }
 })
