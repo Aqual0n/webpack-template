@@ -2,7 +2,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {VueLoaderPlugin} = require('vue-loader');
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
@@ -39,19 +38,12 @@ module.exports = {
         rules: [
             {
                 test: /\.pug$/,
-                loader: 'pug-plain-loader'
+                use: ['pug-loader']
             },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-
-                }
             },
             {
                 test: /\.scss$/,
@@ -96,12 +88,11 @@ module.exports = {
         }
     },
     plugins: [
-        new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
             filename: `${PATHS.assets}css/[name].[contenthash].css`
         }),
         new HtmlWebpackPlugin({
-            template: `${PATHS.src}/index.html`,
+            template: `${PATHS.src}/index.pug`,
             filename: 'index.html',
         }),
         new CopyWebpackPlugin([

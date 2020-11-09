@@ -1,24 +1,15 @@
 @mixin newFont($family,$pathName) {
     @font-face {
         font-family: '#{$family}';
-        src: url('/public/fonts/#{$pathName}.eot');
-        src: url('/public/fonts/#{$pathName}.eot?iefix') format('emdded-opentype'),
-        url('/public/fonts/#{$pathName}.woff2') format('woff2'),
-        url('/public/fonts/#{$pathName}.woff') format('woff'),
-        url('/public/fonts/#{$pathName}.ttf') format('truetype'),
-        url('/public/fonts/#{$pathName}.svg##{$pathName}') format('svg');
+        src: url('/public/fonts/#{$pathName}.woff2') format('woff2'), url('/public/fonts/#{$pathName}.woff') format('woff');
         font-weight: normal;
         font-style: normal;
     }
 }
 
 @font-face {
-    font-family: 'icon-new';
-    src: url('/public/fonts/icomoon-new.eot');
-    src: url('/public/fonts/icomoon-new.eot?iefix') format('emdded-opentype'),
-    url('/public/fonts/icomoon-new.woff') format('woff'),
-    url('/public/fonts/icomoon-new.ttf') format('truetype'),
-    url('/public/fonts/icomoon-new.svg#icomoon-new') format('svg');
+    font-family: 'icon';
+    src: url('/public/fonts/icomoon.woff') format('woff'), url('/public/fonts/icomoon.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
