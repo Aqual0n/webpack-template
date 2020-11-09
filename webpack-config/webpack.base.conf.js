@@ -12,11 +12,9 @@ const PATHS = {
 
 
 module.exports = {
-
     externals: {
         paths: PATHS,
     },
-
     entry: {
         app: PATHS.src
     },
@@ -108,7 +106,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {
-                from: `${PATHS.src}/assets/img`,
+                from: `${PATHS.src}/assets/images`,
                 to: `${PATHS.assets}img`
             },
             {
