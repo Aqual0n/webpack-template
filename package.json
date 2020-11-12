@@ -39,6 +39,7 @@
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.1.2",
+    "@prettier/plugin-pug": "^1.10.1",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "sass-loader": "^8.0.2",
@@ -50,9 +51,7 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.3",
-    "webpack-merge": "^4.2.2"
-  },
-  "dependencies": {
+    "webpack-merge": "^4.2.2",
     "bemto.pug": "^2.1.0"
   }
 }
