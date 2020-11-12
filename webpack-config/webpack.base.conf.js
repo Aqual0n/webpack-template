@@ -1,26 +1,26 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plug in')
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
-    dist: path.join(__dirname, '../dist'),
+    build: path.join(__dirname, '../build'),
     assets: 'assets/',
-};
-
+}
 
 module.exports = {
     externals: {
         paths: PATHS,
     },
     entry: {
-        app: PATHS.src
+        app: PATHS.src,
     },
     output: {
         filename: `${PATHS.assets}js/[name].[contenthash].js`,
-        path: PATHS.dist,
-        publicPath: '/'
+        path: PATHS.build,
+        publicPath: '/',
     },
     optimization: {
         splitChunks: {
@@ -30,15 +30,15 @@ module.exports = {
                     test: /node_modules/,
                     chunks: 'all',
                     enforce: true,
-                }
-            }
-        }
+                },
+            },
+        },
     },
     module: {
         rules: [
             {
                 test: /\.pug$/,
-                use: ['pug-loader']
+                use: ['pug-loader'],
             },
             {
                 test: /\.js$/,
@@ -54,42 +54,42 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             sourceMap: true,
-                        }
+                        },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: true,
-                        }
+                        },
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
                             sourceMap: true,
                             config: {
-                                path: `./postcss.config.js`
-                            }
-                        }
-                    }
-                ]
+                                path: `./postcss.config.js`,
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(png|jpg|giv|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]'
-                }
+                    name: '[name].[ext]',
+                },
             },
-        ]
+        ],
     },
     resolve: {
         alias: {
             '~': 'src',
-        }
+        },
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: `${PATHS.assets}css/[name].[contenthash].css`
+            filename: `${PATHS.assets}css/[name].[contenthash].css`,
         }),
         new HtmlWebpackPlugin({
             template: `${PATHS.src}/index.pug`,
@@ -98,12 +98,13 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: `${PATHS.src}/assets/images`,
-                to: `${PATHS.assets}img`
+                to: `${PATHS.assets}img`,
             },
             {
                 from: `${PATHS.src}/static`,
-                to: ''
-            }
+                to: '',
+            },
         ]),
+        new ESLintPlugin(),
     ],
-};
+}

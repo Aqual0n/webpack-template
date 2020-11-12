@@ -1,4 +1,9 @@
-@import 'ui/reset';
-@import 'ui/vars';
-@import 'ui/common';
-@import 'ui/fonts';
+#app {
+    @import 'reset';
+    @import 'vars';
+    @import 'common';
+    @import 'fonts';
+    @import "ui/ui";
+    @import "blanks/blanks";
+    @import "sections/sections";
+}

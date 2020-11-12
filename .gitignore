@@ -1,5 +1,6 @@
 node_modules/
 .idea/
 *.psd
-/dist
+/build
 package-lock.json
+.env

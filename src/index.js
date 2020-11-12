@@ -1,2 +1,4 @@
-import './js/blanks/commons.js';
-import './assets/scss/styles.scss';
+import './assets/scss/styles.scss'
+import header from './js/sections/header'
+
+console.log(header)

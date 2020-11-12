@@ -12,6 +12,7 @@ body {
         overflow-y: scroll;
     }
 }
+
 .container{
     box-sizing: border-box;
     padding: 0 6.25%;
@@ -113,6 +114,7 @@ textarea {
     padding: 0;
     width: 100%;
     color: #000;
+
     &::-webkit-input-placeholder {
         font-size: inherit;
         font-family: inherit;
