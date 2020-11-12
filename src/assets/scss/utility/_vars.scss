@@ -3,6 +3,7 @@
 
 @function toRem($size) {
     $remSize: $size / 12 + rem + ' ';
+
     @return #{$remSize};
 }
 

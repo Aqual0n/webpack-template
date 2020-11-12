@@ -1,9 +1,9 @@
 #app {
-    @import 'reset';
-    @import 'vars';
-    @import 'common';
-    @import 'fonts';
-    @import "ui/ui";
-    @import "blanks/blanks";
-    @import "sections/sections";
+    @import 'utility/reset';
+    @import 'utility/vars';
+    @import 'utility/common';
+    @import 'utility/fonts';
+    @import 'ui/ui';
+    @import 'blanks/blanks';
+    @import 'sections/sections';
 }

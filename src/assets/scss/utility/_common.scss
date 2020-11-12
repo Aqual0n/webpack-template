@@ -13,13 +13,13 @@ body {
     }
 }
 
-.container{
+.container {
     box-sizing: border-box;
     padding: 0 6.25%;
     margin: 0 auto;
     max-width: $maxRems;
 
-    @media (min-width: $desktop){
+    @media (min-width: $desktop) {
         padding: 0 toRem(100);
     }
 }
@@ -44,11 +44,12 @@ html {
     }
 }
 
-.swiper-wrapper{
-    height: auto!important;
+.swiper-wrapper {
+    height: auto !important;
 }
 
-.button,button {
+.button,
+button {
     border: none;
     cursor: pointer;
     font-family: 'reg';
@@ -61,12 +62,11 @@ html {
     outline: none;
 }
 
-
 a {
     text-decoration: none;
 }
 
-input{
+input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -80,21 +80,22 @@ input{
     font-family: reg;
     width: 100%;
     color: #000;
+
     &::-webkit-input-placeholder {
         font-size: inherit;
         font-family: inherit;
     }
-    
+
     &::-moz-placeholder {
         font-size: inherit;
         font-family: inherit;
     }
-    
+
     &:-moz-placeholder {
         font-size: inherit;
         font-family: inherit;
     }
-    
+
     &:-ms-input-placeholder {
         font-size: inherit;
         font-family: inherit;
@@ -119,17 +120,17 @@ textarea {
         font-size: inherit;
         font-family: inherit;
     }
-    
+
     &::-moz-placeholder {
         font-size: inherit;
         font-family: inherit;
     }
-    
+
     &:-moz-placeholder {
         font-size: inherit;
         font-family: inherit;
     }
-    
+
     &:-ms-input-placeholder {
         font-size: inherit;
         font-family: inherit;

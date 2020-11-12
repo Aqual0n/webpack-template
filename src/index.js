@@ -1,4 +1,4 @@
-import './assets/scss/styles.scss'
-import header from './js/sections/header'
+import './assets/scss/styles.scss';
+import header from './js/sections/header';
 
-console.log(header)
+console.log(header);
