@@ -4,6 +4,7 @@ module.exports = {
     semi: true,
     singleQuote: true,
     plugins: ['@prettier/plugin-pug'],
+    endOfLine: 'auto',
     overrides: [
         {
             files: ['*.pug'],

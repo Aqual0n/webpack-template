@@ -14,9 +14,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     },
     plugins: [
         new webpack.SourceMapDevToolPlugin({
-            filename: '[file].map'
-        })
-    ]
+            filename: '[file].map',
+        }),
+    ],
 });
 
 module.exports = new Promise((resolve, reject) => {

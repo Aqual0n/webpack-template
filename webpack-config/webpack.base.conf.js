@@ -1,15 +1,16 @@
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const PATHS = {
+    public: path.join(__dirname, '../public'),
     src: path.join(__dirname, '../src'),
     build: path.join(__dirname, '../build'),
     assets: 'assets/',
-}
+};
 
 module.exports = {
     externals: {
@@ -35,6 +36,10 @@ module.exports = {
             },
         },
     },
+    watchOptions: {
+        poll: true,
+    },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -47,20 +52,32 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                ],
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     'style-loader',
                     MiniCssExtractPlugin.loader,
+                    'css-loader',
                     {
-                        loader: 'css-loader',
+                        loader: 'resolve-url-loader',
                         options: {
-                            sourceMap: true,
+                            root: path.join(__dirname, '../'),
                         },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: true,
+                            sassOptions: {
+                                precision: 6,
+                            },
                         },
                     },
                     {
@@ -79,31 +96,42 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
+                    outputPath: 'public/images/',
                 },
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'public/fonts/',
+                        },
+                    },
+                ],
             },
         ],
     },
     resolve: {
         alias: {
-            '~': 'src',
+            public: path.resolve(__dirname, '../public'),
         },
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: `${PATHS.assets}css/[name].[contenthash].css`,
+            // filename: `${PATHS.assets}css/[name].[contenthash].css`,
+            filename: `[name].[contenthash].css`,
         }),
         new HtmlWebpackPlugin({
             template: `${PATHS.src}/index.pug`,
             filename: 'index.html',
         }),
-        new CopyWebpackPlugin([
+        new CopyPlugin([
             {
-                from: `${PATHS.src}/assets/images`,
-                to: `${PATHS.assets}img`,
-            },
-            {
-                from: `${PATHS.src}/static`,
-                to: '',
+                from: `${PATHS.public}`,
+                to: 'public/[path][name].[ext]',
+                force: true,
             },
         ]),
         new ESLintPlugin(),
@@ -111,4 +139,4 @@ module.exports = {
             files: ['**/*.{htm,html,sss,less,scss,sass}'],
         }),
     ],
-}
+};

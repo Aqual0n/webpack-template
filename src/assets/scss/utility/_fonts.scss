@@ -7,14 +7,11 @@
     }
 }
 
-@font-face {
-    font-family: 'icon';
-    src: url('/public/fonts/icomoon.woff') format('woff'), url('/public/fonts/icomoon.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@include newFont('rubik-reg','Rubik-Regular');
-@include newFont('roboto-reg','Roboto-Regular');
-@include newFont('roboto-bold','Roboto-Bold');
-@include newFont('icon','icomoon');
+//@font-face {
+//    font-family: 'icon';
+//    src: url('/public/fonts/icomoon.woff') format('woff'), url('/public/fonts/icomoon.woff2') format('woff2');
+//    font-weight: normal;
+//    font-style: normal;
+//}
+//
+//@include newFont('icon','icomoon');
