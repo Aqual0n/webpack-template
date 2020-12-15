@@ -5,12 +5,11 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const chokidar = require('chokidar');
 const { ncp } = require('ncp');
+const sharp = require('sharp');
 
-const config = require('./optimization.config');
-
+const config = require('./image.optimization.config');
 const src = config.src;
 const dest = config.dest;
-const sharp = require('sharp');
 
 const removeBrackets = function (string) {
     const brackets = string.match(/\[(.*?)\]/);
@@ -170,46 +169,30 @@ const walkSync = function (dir) {
                 } else {
                     brackets = '';
                 }
-                sharp(`${dir}/${file}`) /* resize and generate webp */
+
+                if (config.makeWebp) {
+                    sharp(`${dir}/${file}`) /* resize and generate webp */
+                        .resize({ width })
+                        .webp({ quality: config.webpQuality })
+                        .toFile(
+                            `${dir}/${removeBrackets(file).substring(
+                                0,
+                                removeBrackets(file).lastIndexOf('.')
+                            )}.webp`
+                        );
+                }
+                sharp(`${dir}/${file}`) /* resize and output to buffer */
                     .resize({ width })
-                    .webp({ quality: config.webpQuality })
-                    .toFile(
-                        `${dir}/${removeBrackets(file).substring(
-                            0,
-                            removeBrackets(file).lastIndexOf('.')
-                        )}.webp`
-                    )
-                    .then(() =>
-                        sharp(
-                            `${dir}/${file}`
-                        ) /* resize and output to buffer */
-                            .resize({ width })
-                            .toBuffer()
-                    )
+                    .toBuffer()
                     .then((buffer) => {
-                        /* write buffer into a file */
+                        /* checking if file exists */
                         fsPromises
                             .access(`${dir}/${file}`, fs.constants.F_OK)
                             .then(() => {
-                                if (!brackets) {
-                                    fs.writeFileSync(`${dir}/${file}`, buffer);
-                                } else {
-                                    fsPromises
-                                        .rename(
-                                            `${dir}/${file}`,
-                                            `${dir}/${removeBrackets(file)}`
-                                        )
-                                        .then(() => {
-                                            fs.writeFileSync(
-                                                `${dir}/${removeBrackets(
-                                                    file
-                                                )}`,
-                                                buffer
-                                            );
-                                        });
-                                }
+                                // write buffer into a file
+                                fs.writeFileSync(`${dir}/${file}`, buffer);
                             })
-                            .catch(() => console.error('not exists'));
+                            .catch(() => console.error('file not exists'));
                     })
                     .then(() => {
                         console.log(
@@ -218,7 +201,7 @@ const walkSync = function (dir) {
                     })
                     /* optimize rewrited image */
                     .then(() =>
-                        imagemin([`${dir}/${removeBrackets(file)}`], {
+                        imagemin([`${dir}/${file}`], {
                             destination: `${dir}/`,
                             plugins: [
                                 imageminMozjpeg({
@@ -231,9 +214,18 @@ const walkSync = function (dir) {
                         })
                     )
                     .then((res) => {
-                        console.log(
-                            `image ${dir}/${removeBrackets(file)} optimized`
-                        );
+                        fsPromises
+                            .rename(
+                                `${dir}/${file}`,
+                                `${dir}/${removeBrackets(file)}`
+                            )
+                            .then(() => {
+                                console.log(
+                                    `image ${dir}/${removeBrackets(
+                                        file
+                                    )} optimized`
+                                );
+                            });
                     })
                     .catch((err) => {
                         console.log(
