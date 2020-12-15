@@ -115,9 +115,7 @@ const startWatch = function (watcher) {
                                     imageminMozjpeg({
                                         quality: config.jpegQuality,
                                     }),
-                                    imageminPngquant({
-                                        quality: config.pngQuality,
-                                    }),
+                                    imageminPngquant(),
                                 ],
                             })
                         )
@@ -207,9 +205,7 @@ const walkSync = function (dir) {
                                 imageminMozjpeg({
                                     quality: config.jpegQuality,
                                 }),
-                                imageminPngquant({
-                                    quality: config.pngQuality,
-                                }),
+                                imageminPngquant(),
                             ],
                         })
                     )
@@ -251,9 +247,9 @@ const buildImages = function () {
                 walkSync(dest.substring(0, dest.length - 1));
 
                 if (needToWatch) {
+                    // adding watcher to serve images in ./src/assets/images
                     startWatch(watcherObj);
                 }
-                // adding watcher to serve images in ./src/assets/images
             });
         });
 };
