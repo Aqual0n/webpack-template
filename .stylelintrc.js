@@ -27,4 +27,4 @@ module.exports = {
         'max-empty-lines': 1,
         'no-descending-specificity': null,
     },
-}
+};

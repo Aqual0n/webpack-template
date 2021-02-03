@@ -3,8 +3,8 @@ module.exports = {
     tabWidth: 4,
     semi: true,
     singleQuote: true,
-    plugins: ['@prettier/plugin-pug'],
     endOfLine: 'auto',
+    plugins: ['@prettier/plugin-pug'],
     overrides: [
         {
             files: ['*.pug'],

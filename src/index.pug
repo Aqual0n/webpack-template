@@ -1,29 +1,5 @@
-doctype html
-html
-    head
-        meta(
-            charset="utf-8"
-        )
-        title pug test
-        meta(
-            name="description"
-            content=""
-        )
-        meta(
-            name="author"
-            content=""
-        )
-        meta(
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1"
-        )
-        // <% for (var css in htmlWebpackPlugin.files.css) { %>
-        // <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[css] %>">
-        // <% } %>
-    body
-        #app
-            include components/sections/header.pug
-            include components/sections/main.pug
-        // <% for (var chunk in htmlWebpackPlugin.files.js) { %>
-        // <script src="<%= htmlWebpackPlugin.files.js[chunk] %>"></script>
-        // <% } %>
+extends components/layout.pug
+
+block content
+    include components/sections/header.pug
+    include components/sections/main.pug

@@ -1,7 +1,10 @@
 node_modules/
 .idea/
+.vscode/
 *.psd
 /build
 /public/images/
 package-lock.json
 .env
+archives/buildArch.zip
+archives/srcArch.zip

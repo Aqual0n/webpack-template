@@ -7,9 +7,9 @@ module.exports = {
                 {
                     discardComments: {
                         removeAll: true,
-                    }
-                }
-            ]
-        })
-    ]
+                    },
+                },
+            ],
+        }),
+    ],
 };

@@ -1,8 +1,10 @@
+@import 'utility/fonts';
+@import 'utility/vars';
+@import 'utility/layout';
+
 #app {
     @import 'utility/reset';
-    @import 'utility/vars';
     @import 'utility/common';
-    @import 'utility/fonts';
     @import 'ui/ui';
     @import 'blanks/blanks';
     @import 'sections/sections';

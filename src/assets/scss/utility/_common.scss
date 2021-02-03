@@ -1,18 +1,3 @@
-body {
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    font-family: reg;
-    background-color: #fff; //-webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    -moz-osx-font-smoothing: grayscale;
-    min-width: 320px;
-
-    @media (min-width: $desktop) {
-        height: 100vh;
-        overflow-y: scroll;
-    }
-}
-
 .container {
     box-sizing: border-box;
     padding: 0 6.25%;
@@ -20,27 +5,7 @@ body {
     max-width: $maxRems;
 
     @media (min-width: $desktop) {
-        padding: 0 toRem(100);
-    }
-}
-
-html {
-    font-size: 12px;
-
-    @media (min-width: 400px) {
-        font-size: 13.2px;
-    }
-
-    @media (min-width: $tablet) {
-        font-size: 12px;
-    }
-
-    @media (min-width: $desktop) {
-        font-size: 1vw;
-    }
-
-    @media (min-width: $maxRems) {
-        font-size: 16px;
+        padding: 0 em(100);
     }
 }
 
@@ -52,7 +17,7 @@ html {
 button {
     border: none;
     cursor: pointer;
-    font-family: 'reg';
+    font-family: $reg;
     background: none;
     box-sizing: border-box;
     padding: 0;
@@ -67,52 +32,24 @@ a {
 }
 
 input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: block;
-    background-color: transparent;
-    box-sizing: border-box;
-    border: none;
-    padding: 0;
     border-radius: 0;
-    //font-family: reg,system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    font-family: reg;
-    width: 100%;
-    color: #000;
-
-    &::-webkit-input-placeholder {
-        font-size: inherit;
-        font-family: inherit;
-    }
-
-    &::-moz-placeholder {
-        font-size: inherit;
-        font-family: inherit;
-    }
-
-    &:-moz-placeholder {
-        font-size: inherit;
-        font-family: inherit;
-    }
-
-    &:-ms-input-placeholder {
-        font-size: inherit;
-        font-family: inherit;
-    }
 }
 
+textarea {
+    resize: none;
+}
+
+input,
 textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    font-family: reg;
     display: block;
     background-color: transparent;
     box-sizing: border-box;
-    resize: none;
     border: none;
     padding: 0;
+    font-family: $reg;
     width: 100%;
     color: #000;
 

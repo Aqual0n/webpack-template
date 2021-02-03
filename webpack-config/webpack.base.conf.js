@@ -4,6 +4,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const ProvidePlugin = require('webpack').ProvidePlugin;
+const TerserPlugin = require('terser-webpack-plugin');
 
 const PATHS = {
     public: path.join(__dirname, '../public'),
@@ -25,6 +27,7 @@ module.exports = {
         publicPath: '/',
     },
     optimization: {
+        // TODO: disable if needed for ozon/faberlic
         splitChunks: {
             cacheGroups: {
                 vendor: {
@@ -35,6 +38,8 @@ module.exports = {
                 },
             },
         },
+        minimize: true,
+        minimizer: [new TerserPlugin()],
     },
     watchOptions: {
         poll: true,
@@ -44,7 +49,7 @@ module.exports = {
         rules: [
             {
                 test: /\.pug$/,
-                use: ['pug-loader'],
+                loader: 'pug-loader',
             },
             {
                 test: /\.js$/,
@@ -120,7 +125,6 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            // filename: `${PATHS.assets}css/[name].[contenthash].css`,
             filename: `[name].[contenthash].css`,
         }),
         new HtmlWebpackPlugin({
@@ -137,6 +141,11 @@ module.exports = {
         new ESLintPlugin(),
         new StyleLintPlugin({
             files: ['**/*.{htm,html,sss,less,scss,sass}'],
+        }),
+        // TODO: disable if needed for faberlic
+        new ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
         }),
     ],
 };

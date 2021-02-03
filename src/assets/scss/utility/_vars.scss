@@ -1,6 +1,3 @@
-//@import '../../node_modules/susy/sass/susy';
-//$susy: ('columns': susy-repeat(48), 'gutters': 0, 'spread': 'narrow', 'container-spread': 'narrow', );
-
 @function toRem($size) {
     $remSize: $size / 12 + rem + ' ';
 
@@ -11,10 +8,18 @@
     @return $px / $root + em;
 }
 
+//colors
+$black: #000;
+$white: #fff;
+
 //fonts
 $icon: icon, sans-serif;
 
+// this is an example
+$reg: 'reg', -apple-system, system-ui, blinkmacsystemfont, 'Lucida Grande', 'Lucida Sans Unicode', 'sans-serif';
+
 //breakpoints
+$mobileScaleStop: 560px;
 $tablet: 650px;
 $maxMobile: $tablet - 1px;
 $tabletLate: 768px;
@@ -22,3 +27,9 @@ $maxMobileLate: $tabletLate - 1px;
 $desktop: 1200px;
 $maxTablet: $desktop - 1px;
 $maxRems: 1600px;
+
+// these breakpoints used in scaling calculations
+// and should be adjusted to the design layout
+$designTablet: 960px;
+$designDesktop: 1472px;
+
